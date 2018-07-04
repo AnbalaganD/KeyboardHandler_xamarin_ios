@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KeyboardHandler", "KeyboardHandler\KeyboardHandler.csproj", "{334249FC-7019-48F6-B09F-7FE2C6D8723D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|iPhoneSimulator = Debug|iPhoneSimulator
+		Release|iPhone = Release|iPhone
+		Release|iPhoneSimulator = Release|iPhoneSimulator
+		Debug|iPhone = Debug|iPhone
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{334249FC-7019-48F6-B09F-7FE2C6D8723D}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
+		{334249FC-7019-48F6-B09F-7FE2C6D8723D}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
+		{334249FC-7019-48F6-B09F-7FE2C6D8723D}.Release|iPhone.ActiveCfg = Release|iPhone
+		{334249FC-7019-48F6-B09F-7FE2C6D8723D}.Release|iPhone.Build.0 = Release|iPhone
+		{334249FC-7019-48F6-B09F-7FE2C6D8723D}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
+		{334249FC-7019-48F6-B09F-7FE2C6D8723D}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
+		{334249FC-7019-48F6-B09F-7FE2C6D8723D}.Debug|iPhone.ActiveCfg = Debug|iPhone
+		{334249FC-7019-48F6-B09F-7FE2C6D8723D}.Debug|iPhone.Build.0 = Debug|iPhone
+	EndGlobalSection
+EndGlobal
