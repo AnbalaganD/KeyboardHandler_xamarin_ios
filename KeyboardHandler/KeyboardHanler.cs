@@ -70,7 +70,7 @@ namespace KeyboardHandler
                 }
                 if (keyboardMinY < inputViewOrigin.Y + activeTextInputView.Frame.Height)
                 {
-                    var rootView = GetTopViewController().View;
+                    var rootView = GetTopViewController(UIApplication.SharedApplication.KeyWindow.RootViewController).View;
                     var movingDistance = (keyboardMinY - inputViewOrigin.Y) - activeTextInputView.Frame.Height + rootView.Frame.GetMinY();
 
                     if (movingDistance > keyboardMinY)
@@ -90,33 +90,34 @@ namespace KeyboardHandler
             isKeyboardPresent = false;
             if (viewOriginalFrameCache.HasValue)
             {
-                var rootView = GetTopViewController().View;
+                var rootView = GetTopViewController(UIApplication.SharedApplication.KeyWindow.RootViewController).View;
                 rootView.Frame = viewOriginalFrameCache.Value;
                 rootView.LayoutIfNeeded();
             }
             viewOriginalFrameCache = null;
         }
 
-        UIViewController GetTopViewController()
+        UIViewController GetTopViewController(UIViewController controller)
         {
-            UIViewController viewController = null;
-            var window = UIApplication.SharedApplication.KeyWindow;
+            if (controller == null)
+                return null;
 
-            if (window != null && window.WindowLevel == UIWindowLevel.Normal)
-                viewController = window.RootViewController;
-
-            if (viewController == null)
+            if (controller is UINavigationController)
             {
-                window = UIApplication.SharedApplication.Windows.OrderByDescending(w => w.WindowLevel).FirstOrDefault(w => w.RootViewController != null && w.WindowLevel == UIWindowLevel.Normal);
-                if (window == null)
-                    throw new InvalidOperationException("Could not find current view controller");
-                viewController = window.RootViewController;
+                var navigationController = controller as UINavigationController;
+                return GetTopViewController(navigationController.VisibleViewController);
             }
 
-            while (viewController.PresentedViewController != null)
-                viewController = viewController.PresentedViewController;
+            if (controller is UITabBarController)
+            {
+                var tabBarControll = controller as UITabBarController;
+                return GetTopViewController(tabBarControll.SelectedViewController);
+            }
 
-            return viewController;
+            if (controller.PresentedViewController != null)
+                return GetTopViewController(controller.PresentedViewController);
+
+            return controller;
         }
     }
 }
